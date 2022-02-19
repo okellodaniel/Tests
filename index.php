@@ -14,9 +14,9 @@
 </head>
 
 <body>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
         Name: <input type="text" name="name">
-        <span class="error">* <?php echo $nameError; ?></span>
+        <span class="error">* <?php echo "$nameError"; ?></span>
         <br><br>
         E-mail: <input type="text" name="email">
         <span class="error">* <?php echo $emailError; ?></span>
@@ -38,6 +38,8 @@
     $nameError = $genderError = $emailError = $websiteError = "";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+
         if (empty($_POST["name"])) {
             $nameError = "Name is required";
             echo "<h1>Checking this $nameError</h1>";
@@ -50,33 +52,42 @@
                 $nameError = "Only letters and white space allowed";
             }
         }
-    }
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+
         if (empty($_POST["email"])) {
             $emailError = "Email is required";
         } else {
             # code...
             $email = test_input($_POST["email"]);
+
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $emailError = "Invalid Email Format";
+            }
         }
-    }
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+
+
         if (empty($_POST["website"])) {
             $website = "";
         } else {
             # code...
             $website = test_input($_POST["website"]);
+            if (!preg_match("/\b(?:(?https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $website)) {
+                $websiteError = "Invalid Url";
+            }
         }
-    }
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+
         if (empty($_POST["comment"])) {
             $comment = "";
         } else {
             # code...
             $comment = test_input($_POST["comment"]);
         }
-    }
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+
+
         if (empty($_POST["gender"])) {
             $genderError = "Gender is required";
         } else {
