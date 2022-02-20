@@ -14,23 +14,6 @@
 </head>
 
 <body>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-        Name: <input type="text" name="name">
-        <span class="error">* <?php echo "$nameError"; ?></span>
-        <br><br>
-        E-mail: <input type="text" name="email">
-        <span class="error">* <?php echo $emailError; ?></span>
-        <br><br>
-        Website: <input type="text" name="website">
-        <span class="error"> <?php echo $websiteError; ?></span>
-        Comment: <textarea name="comment" rows="5" cols="40"></textarea>
-        Gender:
-        <input type="radio" name="gender" value="female">Female
-        <input type="radio" name="gender" value="male">Male
-        <input type="radio" name="gender" value="other">Other
-        <span class="error">*<?php echo $genderError; ?></span>
-        <input type="submit" value="submit" name="submit">
-    </form>
 
     <?php
 
@@ -108,7 +91,38 @@
 
         return $data;
     }
+    ?>
 
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        Name: <input type="text" name="name">
+        <span class="error">* <?php echo "$nameError"; ?></span>
+        <br><br>
+        E-mail: <input type="text" name="email">
+        <span class="error">* <?php echo $emailError; ?></span>
+        <br><br>
+        Website: <input type="text" name="website">
+        <span class="error"> <?php echo $websiteError; ?></span>
+        <br><br>
+        Comment: <textarea name="comment" rows="5" cols="40"></textarea>
+        Gender:
+        <input type="radio" name="gender" value="female">Female
+        <input type="radio" name="gender" value="male">Male
+        <input type="radio" name="gender" value="other">Other
+        <span class="error">*<?php echo $genderError; ?></span>
+        <br><br>
+        <input type="submit" value="submit" name="submit">
+    </form>
+    <?php
+    echo "<h2>Your Input:</h2>";
+    echo $name;
+    echo "<br>";
+    echo $email;
+    echo "<br>";
+    echo $website;
+    echo "<br>";
+    echo $comment;
+    echo "<br>";
+    echo $gender;
     ?>
 </body>
 
